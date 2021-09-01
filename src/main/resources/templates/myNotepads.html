@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My notepads</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/myNotepads.css}" type="text/css">
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+</head>
+<body class="body">
+<header class="header radius">
+    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+</header>
+
+<div class="middle">
+    <main class="main radius">
+        <div class="notepads">
+            <div class="notepad radius" th:each="notepad : ${notepadList}">
+                <p th:text="${notepad.id}"></p>
+                <p th:text="${notepad.title}"></p>
+                <p th:text="${notepad.body}"></p>
+            </div>
+        </div>
+    </main>
+    <div class="r-side radius">
+        r-side
+    </div>
+</div>
+
+<footer class="footer radius">
+    © 2021 My notepad .inc
+</footer>
+
+<a th:href="editNotepad" class="material-icons editNotepadLink">add_circle</a>
+</body>
+</html>

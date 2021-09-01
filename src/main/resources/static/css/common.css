@@ -1,0 +1,43 @@
+.body {
+    padding: 10px;
+}
+
+.header {
+    margin-bottom: 10px;
+}
+
+.middle {
+    display: flex;
+    min-height: 40vw;
+}
+
+.main {
+    width: 70%;
+}
+
+.r-side {
+    margin-left: 10px;
+    width: 30%;
+}
+
+.footer {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.header, .main, .r-side, .footer {
+    background-color: darkgray;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.myTitleLink {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+
+.radius {
+    border-radius: 3px;
+}

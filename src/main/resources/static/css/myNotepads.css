@@ -1,0 +1,22 @@
+.editNotepadLink {
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+    font-size: 50px;
+    color: #222222;
+    text-decoration: none;
+}
+
+.notepads {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.notepad {
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px;
+    background-color: dimgray;
+    height: 200px;
+    width: 200px;
+}

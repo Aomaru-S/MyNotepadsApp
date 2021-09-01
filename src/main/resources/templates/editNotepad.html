@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My notepads</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/editNotepad.css}" type="text/css">
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+    <script type="text/javascript" th:src="@{/javascript/editNotepad.js}"></script>
+</head>
+<body class="body">
+<header class="header radius">
+    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+</header>
+
+<div class="middle">
+    <main class="main radius">
+        <div id="title-editor" class="title-editor editor radius" contenteditable="true" placeholder="title"></div>
+        <div id="body-editor" class="body-editor editor radius" contenteditable="true" placeholder="body"></div>
+        <form name="form" action="#" th:action="@{/editNotepadSubmit}" th:object="${notepad}" method="post">
+            <input id="title-form" type="hidden" th:field="*{title}" />
+            <input id="body-form" type="hidden" th:field="*{body}" />
+<!--            <input type="text" th:field="*{categoryList[0].name}" />-->
+        </form>
+    </main>
+    <div class="r-side radius">
+        <div class="new-category">
+            <div class="category-editor editor radius" contenteditable="true" placeholder="category"></div>
+            <div class="material-icons">add_box</div>
+        </div>
+        <button class="button" onclick="saveNotepad()">Save</button>
+        <button class="button" onclick="resetNotepad()">Reset</button>
+    </div>
+</div>
+
+<footer class="footer radius">
+    © 2021 My notepad .inc
+</footer>
+</body>
+</html>

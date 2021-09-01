@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My notepads</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+    <script type="text/javascript" th:src="@{/javascript/login.js}"></script>
+</head>
+<body class="body">
+<header class="header radius">
+    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+</header>
+
+<div class="loginFormContainer">
+    <div class="loginForm radius">
+        <h2 class="login-label">Log In</h2>
+        <div id="input-id" class="auth-info radius" contenteditable="true" placeholder="ID"></div>
+        <div id="input-password" class="auth-info radius" contenteditable="true" placeholder="Password"></div>
+        <button class="login-button" onclick="login()">Sign In</button>
+    </div>
+    <form name="form" th:action="@{/login}" method="post">
+        <input id="id-form" type="hidden" name="username" />
+        <input id="password-form" type="hidden" name="password" />
+    </form>
+</div>
+
+<footer class="footer radius">
+    © 2021 My notepad .inc
+</footer>
+
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+</body>
+</html>
