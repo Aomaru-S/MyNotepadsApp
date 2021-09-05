@@ -16,8 +16,12 @@ import java.util.List;
 @Controller
 public class MyNotepadController {
 
-    @Autowired
     NotepadRepository notepadRepository;
+
+    @Autowired
+    public MyNotepadController(NotepadRepository notepadRepository) {
+        this.notepadRepository = notepadRepository;
+    }
 
     @GetMapping("/myNotepads")
     public String myNotepads(Model model, HttpServletRequest request) {
