@@ -21,7 +21,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) /*throws Exception*/ {
+    public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/css/**", "/image/**", "/javascript/**");
     }
 
@@ -29,10 +29,10 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .anyRequest().authenticated()
-                    .and()
+                    .anyRequest().authenticated().and()
                 .formLogin()
-                    .loginPage("/login").permitAll();
+                    .loginPage("/login").permitAll().and().
+                logout().logoutSuccessUrl("/login?logout").permitAll();
     }
 
     @Override

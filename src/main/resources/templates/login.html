@@ -15,15 +15,21 @@
 </head>
 <body class="body">
 <header class="header radius">
-    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+    <a th:href="myNotepads" class="myTitleLink nonDecorationLink">My notepads</a>
 </header>
 
 <div class="loginFormContainer">
     <div class="loginForm radius">
         <h2 class="login-label">Log In</h2>
-        <div id="input-id" class="auth-info radius" contenteditable="true" placeholder="ID"></div>
+        <div id="input-id" class="auth-info radius" contenteditable="true" placeholder="ID" autofocus></div>
         <div id="input-password" class="auth-info radius" contenteditable="true" placeholder="Password"></div>
         <button class="login-button" onclick="login()">Log In</button>
+        <div class="auth-info radius error-message message" th:if="${param.error}">Invalid username or password.</div>
+        <div class="auth-info radius logged-out-message message" th:if="${param.logout}">Logged out successfully.</div>
+        <div class="other-option-container">
+            <a href="https://google.com/" class="other-option">Sign Up</a>
+            <a href="https://google.com/" class="other-option">Forgot password?</a>
+        </div>
     </div>
     <form name="form" th:action="@{/login}" method="post">
         <input id="id-form" type="hidden" name="username" />

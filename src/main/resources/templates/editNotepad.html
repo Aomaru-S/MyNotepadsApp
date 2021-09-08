@@ -15,7 +15,7 @@
 </head>
 <body class="body">
 <header class="header radius">
-    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+    <a th:href="myNotepads" class="myTitleLink nonDecorationLink">My notepads</a>
 </header>
 
 <div class="middle">
@@ -25,7 +25,6 @@
         <form name="form" action="#" th:action="@{/editNotepadSubmit}" th:object="${notepad}" method="post">
             <input id="title-form" type="hidden" th:field="*{title}" />
             <input id="body-form" type="hidden" th:field="*{body}" />
-<!--            <input type="text" th:field="*{categoryList[0].name}" />-->
         </form>
     </main>
     <div class="r-side radius">

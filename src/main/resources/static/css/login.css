@@ -35,5 +35,34 @@
 .login-button {
     height: 30px;
     background-color: dimgray;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+.other-option-container {
+    display: inline-flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.nonDecorationLink {
+    text-decoration: solid;
+    color: black;
+}
+
+.message {
+    text-align: center;
+    margin-bottom: 20px;
+    border: 1px black solid;
+}
+
+.logged-out-message {
+    background-color: forestgreen;
+}
+
+.error-message {
+    background-color: darkred;
+}
+
+.other-option {
+    color: black;
 }

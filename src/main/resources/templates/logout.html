@@ -15,13 +15,13 @@
 </head>
 <body class="body">
 <header class="header radius">
-    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+    <a th:href="myNotepads" class="myTitleLink nonDecorationLink">My notepads</a>
 </header>
 
 <div class="logoutFormContainer">
     <div class="logoutForm radius">
         <h2 class="logout-label">Log Out</h2>
-        <button class="logout-button" onclick="logout()">Log Out</button>
+        <button class="logout-button" onclick="logout()" autofocus>Log Out</button>
     </div>
     <form name="form" th:action="@{/logout}" method="post">
     </form>
