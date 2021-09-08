@@ -1,0 +1,25 @@
+.logoutFormContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.logoutForm {
+    width: 300px;
+    background-color: darkgray;
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.logout-label {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.logout-button {
+    height: 30px;
+    background-color: dimgray;
+    margin-bottom: 25px;
+}

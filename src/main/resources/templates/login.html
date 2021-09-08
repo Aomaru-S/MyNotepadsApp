@@ -23,7 +23,7 @@
         <h2 class="login-label">Log In</h2>
         <div id="input-id" class="auth-info radius" contenteditable="true" placeholder="ID"></div>
         <div id="input-password" class="auth-info radius" contenteditable="true" placeholder="Password"></div>
-        <button class="login-button" onclick="login()">Sign In</button>
+        <button class="login-button" onclick="login()">Log In</button>
     </div>
     <form name="form" th:action="@{/login}" method="post">
         <input id="id-form" type="hidden" name="username" />
@@ -34,11 +34,9 @@
 <footer class="footer radius">
     © 2021 My notepad .inc
 </footer>
-
-<form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+<script type="text/javascript" th:src="@{/javascript/login.js}"></script>
 </body>
+<script>
+    document.onload = enterIsLogin('input-id', 'input-password')
+</script>
 </html>

@@ -5,12 +5,10 @@ import com.aoiygg.webmempapp.repository.NotepadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,10 +22,9 @@ public class MyNotepadController {
     }
 
     @GetMapping("/myNotepads")
-    public String myNotepads(Model model, HttpServletRequest request) {
-        List<Notepad> notepadList = notepadRepository.findAll();
+    public String myNotepads(Model model, Principal principal) {
+        List<Notepad> notepadList = notepadRepository.findNotepadByUsername(principal.getName());
         model.addAttribute("notepadList", notepadList);
-        System.out.println(request.getRemoteUser());
         return "myNotepads";
     }
 
@@ -48,8 +45,8 @@ public class MyNotepadController {
     }
 
     @PostMapping("/editNotepadSubmit")
-    public String editNotepadSubmit(@ModelAttribute Notepad notepad) {
-        System.out.println(notepad.toString());
+    public String editNotepadSubmit(@ModelAttribute Notepad notepad, Principal principal) {
+        notepad.setUsername(principal.getName());
         notepadRepository.save(notepad);
         return "redirect:/myNotepads";
     }
@@ -57,5 +54,10 @@ public class MyNotepadController {
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "logout";
     }
 }

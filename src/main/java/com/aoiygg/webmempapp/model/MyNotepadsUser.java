@@ -1,12 +1,8 @@
 package com.aoiygg.webmempapp.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Collection;
 
 @Entity
 @Table(name = "user")
@@ -15,12 +11,7 @@ public class MyNotepadsUser {
     @Id
     private String name;
     private String role;
-
-
     private String password;
-
-    public MyNotepadsUser() {
-    }
 
     public String getName() {
         return name;

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My notepads</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/logout.css}" type="text/css">
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+    <script type="text/javascript" th:src="@{/javascript/logout.js}"></script>
+</head>
+<body class="body">
+<header class="header radius">
+    <a th:href="myNotepads" class="myTitleLink">My notepads</a>
+</header>
+
+<div class="logoutFormContainer">
+    <div class="logoutForm radius">
+        <h2 class="logout-label">Log Out</h2>
+        <button class="logout-button" onclick="logout()">Log Out</button>
+    </div>
+    <form name="form" th:action="@{/logout}" method="post">
+    </form>
+</div>
+
+<footer class="footer radius">
+    © 2021 My notepad .inc
+</footer>
+</body>
+</html>
