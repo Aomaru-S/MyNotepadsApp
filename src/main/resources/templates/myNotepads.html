@@ -21,9 +21,9 @@
     <main class="main radius">
         <div class="notepads">
             <div class="notepad radius" th:each="notepad : ${notepadList}">
-                <p th:text="${notepad.id}"></p>
-                <p th:text="${notepad.title}"></p>
-                <p th:text="${notepad.body}"></p>
+                <p th:text="${notepad.getNotepadId()}"></p>
+                <p th:text="${notepad.getTitle()}"></p>
+                <p th:text="${notepad.setBody()}"></p>
             </div>
         </div>
     </main>

@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface NotepadRepository extends JpaRepository<Notepad, Long> {
-    List<Notepad> findNotepadByUsername(String username);
+    List<Notepad> findNotepadByMailAddress(String username);
 }

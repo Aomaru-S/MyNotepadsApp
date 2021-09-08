@@ -1,5 +1,6 @@
 package com.aoiygg.webmempapp.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,16 +10,27 @@ import javax.persistence.Table;
 public class MyNotepadsUser {
 
     @Id
-    private String name;
+    @Column (name = "mail_address")
+    private String mailAddress;
+    @Column (name = "user_name")
+    private String userName;
     private String role;
     private String password;
 
-    public String getName() {
-        return name;
+    public String getMailAddress() {
+        return mailAddress;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setMailAddress(String mailAddress) {
+        this.mailAddress = mailAddress;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getRole() {
@@ -40,7 +52,8 @@ public class MyNotepadsUser {
     @Override
     public String toString() {
         return "MyNotepadsUser{" +
-                "name='" + name + '\'' +
+                "mailAddress='" + mailAddress + '\'' +
+                ", userName='" + userName + '\'' +
                 ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 '}';

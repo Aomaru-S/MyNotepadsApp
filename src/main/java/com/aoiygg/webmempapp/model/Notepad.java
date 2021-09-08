@@ -7,28 +7,20 @@ import javax.persistence.*;
 public class Notepad {
 
     @Id
+    @Column (name = "notepad_id")
     @GeneratedValue
-    private long id;
-    private String username;
-
-
+    private long notepadId;
     private String title;
     private String body;
+    @Column (name = "mail_address")
+    private String mailAddress;
 
-    public long getId() {
-        return id;
+    public long getNotepadId() {
+        return notepadId;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNotepadId(long notepadId) {
+        this.notepadId = notepadId;
     }
 
     public String getTitle() {
@@ -47,12 +39,21 @@ public class Notepad {
         this.body = body;
     }
 
+    public String getMailAddress() {
+        return mailAddress;
+    }
+
+    public void setMailAddress(String mailAddress) {
+        this.mailAddress = mailAddress;
+    }
+
     @Override
     public String toString() {
         return "Notepad{" +
-                "id=" + id +
+                "notepadId=" + notepadId +
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
+                ", mailAddress='" + mailAddress + '\'' +
                 '}';
     }
 }

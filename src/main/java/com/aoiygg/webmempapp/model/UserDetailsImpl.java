@@ -17,12 +17,16 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(MyNotepadsUser user) {
         this.user = user;
         this.authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(user.getRole()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+    }
+
+    public String getMailAddress() {
+        return user.getMailAddress();
     }
 
     @Override
     public String getUsername() {
-        return user.getName();
+        return user.getUserName();
     }
 
     @Override

@@ -1,8 +1,11 @@
 package com.aoiygg.webmempapp.controller;
 
+import com.aoiygg.webmempapp.model.MyNotepadsUser;
 import com.aoiygg.webmempapp.model.Notepad;
+import com.aoiygg.webmempapp.model.UserDetailsImpl;
 import com.aoiygg.webmempapp.repository.NotepadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +27,8 @@ public class MyNotepadController {
     }
 
     @GetMapping("/myNotepads")
-    public String myNotepads(Model model, Principal principal) {
-        List<Notepad> notepadList = notepadRepository.findNotepadByUsername(principal.getName());
+    public String myNotepads(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        List<Notepad> notepadList = notepadRepository.findNotepadByMailAddress(userDetails.getMailAddress());
         model.addAttribute("notepadList", notepadList);
         return "myNotepads";
     }
@@ -47,8 +50,8 @@ public class MyNotepadController {
     }
 
     @PostMapping("/editNotepadSubmit")
-    public String editNotepadSubmit(@ModelAttribute Notepad notepad, Principal principal) {
-        notepad.setUsername(principal.getName());
+    public String editNotepadSubmit(@ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        notepad.setMailAddress(userDetails.getMailAddress());
         notepadRepository.save(notepad);
         return "redirect:/myNotepads";
     }
@@ -61,5 +64,11 @@ public class MyNotepadController {
     @GetMapping("/logout")
     public String logout() {
         return "logout";
+    }
+
+    @GetMapping("/signUp")
+    public String signUp(Model model) {
+        model.addAttribute(new UserDetailsImpl(new MyNotepadsUser()));
+        return "signUp";
     }
 }
