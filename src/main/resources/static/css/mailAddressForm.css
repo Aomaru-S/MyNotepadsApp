@@ -1,0 +1,50 @@
+.formContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    width: 300px;
+    background-color: darkgray;
+    padding: 10px 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.auth-info:empty:before {
+    content: attr(placeholder);
+    pointer-events: none;
+    opacity: 0.8;
+    font-weight: normal;
+}
+
+.auth-info {
+    padding: 10px;
+    font-weight: bold;
+    background-color: dimgray;
+    margin-bottom: 10px;
+}
+
+.send-mail-button {
+    height: 30px;
+    background-color: dimgray;
+    margin-bottom: 20px;
+}
+
+.other-option-container {
+    display: inline-flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.nonDecorationLink {
+    text-decoration: solid;
+    color: black;
+}

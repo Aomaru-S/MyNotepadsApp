@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My notepads</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/mailAddressForm.css}" type="text/css">
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+    <script type="text/javascript" th:src="@{/javascript/mailAddressForm.js}"></script>
+</head>
+<body class="body">
+<header class="header radius">
+    <a th:href="myNotepads" class="myTitleLink nonDecorationLink">My notepads</a>
+</header>
+
+<div class="formContainer">
+    <div class="form radius">
+        <h2 class="label">Input your mail address.</h2>
+        <div id="input-mail-address" class="auth-info radius" contenteditable="true" placeholder="Mail address" autofocus></div>
+        <button class="send-mail-button" onclick="sendMail()">Send mail</button>
+    </div>
+    <form name="form" th:action="@{/sentMail}" method="post">
+        <input id="mail-address-form" type="hidden" name="mailAddress" />
+    </form>
+</div>
+
+<footer class="footer radius">
+    © 2021 My notepad .inc
+</footer>
+<script type="text/javascript" th:src="@{/javascript/mailAddressForm.js}"></script>
+</body>
+<script>
+    document.onload = enterIsSubmit('input-mail-address')
+</script>
+</html>
