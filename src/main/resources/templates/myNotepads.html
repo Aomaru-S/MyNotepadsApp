@@ -23,7 +23,7 @@
             <div class="notepad radius" th:each="notepad : ${notepadList}">
                 <p th:text="${notepad.getNotepadId()}"></p>
                 <p th:text="${notepad.getTitle()}"></p>
-                <p th:text="${notepad.setBody()}"></p>
+                <p th:text="${notepad.getBody()}"></p>
             </div>
         </div>
     </main>
