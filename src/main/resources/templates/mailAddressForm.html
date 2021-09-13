@@ -6,25 +6,27 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/mailAddressForm.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/loginCommon.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/signUp.css}" type="text/css">
     <style>* {
-        margin: 0;:wq
+        margin: 0;
         padding: 0
     }</style>
     <script type="text/javascript" th:src="@{/javascript/mailAddressForm.js}"></script>
+    <script type="text/javascript" th:src="@{/javascript/loginCommon.js}"></script>
 </head>
 <body class="body">
 <header class="header radius">
     <a th:href="myNotepads" class="myTitleLink nonDecorationLink">My notepads</a>
 </header>
 
-<div class="formContainer">
-    <div class="form radius">
-        <h2 class="label">Input your mail address.</h2>
-        <div id="input-mail-address" class="auth-info radius" contenteditable="true" placeholder="Mail address" autofocus></div>
-        <button class="send-mail-button" onclick="sendMail()">Send mail</button>
+<div class="loginFormContainer">
+    <div class="loginForm radius">
+        <h2 class="login-label">Log Up</h2>
+        <div id="input-mail-address" class="auth-info radius" contenteditable="true" placeholder="Email address" autofocus></div>
+        <button class="login-button" onclick="sendMail()">Sent auth email</button>
     </div>
-    <form name="form" th:action="@{/sentMail}" method="post">
+    <form name="form" th:action="@{/sendMail}" method="post">
         <input id="mail-address-form" type="hidden" name="mailAddress" />
     </form>
 </div>
@@ -32,7 +34,7 @@
 <footer class="footer radius">
     © 2021 My notepad .inc
 </footer>
-<script type="text/javascript" th:src="@{/javascript/mailAddressForm.js}"></script>
+<script type="text/javascript" th:src="@{/javascript/login.js}"></script>
 </body>
 <script>
     document.onload = enterIsSubmit('input-mail-address')

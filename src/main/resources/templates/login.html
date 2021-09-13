@@ -6,12 +6,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/loginCommon.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
     <style>* {
         margin: 0;
         padding: 0
     }</style>
     <script type="text/javascript" th:src="@{/javascript/login.js}"></script>
+    <script type="text/javascript" th:src="@{/javascript/loginCommon.js}"></script>
 </head>
 <body class="body">
 <header class="header radius">
@@ -27,7 +29,7 @@
         <div class="auth-info radius error-message message" th:if="${param.error}">Invalid username or password.</div>
         <div class="auth-info radius logged-out-message message" th:if="${param.logout}">Logged out successfully.</div>
         <div class="other-option-container">
-            <a th:href="@{/signUp}" class="other-option">Sign Up</a>
+            <a th:href="@{/mailAddressForm}" class="other-option">Sign Up</a>
             <a href="https://google.com/" class="other-option">Forgot password?</a>
         </div>
     </div>

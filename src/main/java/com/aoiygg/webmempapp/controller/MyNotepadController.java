@@ -1,8 +1,9 @@
 package com.aoiygg.webmempapp.controller;
 
-import com.aoiygg.webmempapp.model.MyNotepadsUser;
+import com.aoiygg.webmempapp.model.AuthMailAddress;
 import com.aoiygg.webmempapp.model.Notepad;
 import com.aoiygg.webmempapp.model.UserDetailsImpl;
+import com.aoiygg.webmempapp.repository.AuthMailAddressRepository;
 import com.aoiygg.webmempapp.repository.NotepadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -13,16 +14,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class MyNotepadController {
 
     NotepadRepository notepadRepository;
+    AuthMailAddressRepository authMailAddressRepository;
     private final MailSender sender;
 
     @Autowired
-    public MyNotepadController(NotepadRepository notepadRepository, MailSender sender) {
+    public MyNotepadController(NotepadRepository notepadRepository, AuthMailAddressRepository authMailAddressRepository, MailSender sender) {
         this.notepadRepository = notepadRepository;
+        this.authMailAddressRepository = authMailAddressRepository;
         this.sender = sender;
     }
 
@@ -71,20 +75,23 @@ public class MyNotepadController {
         return "mailAddressForm";
     }
 
-    @GetMapping("/signUp")
-    public String signUp(Model model) {
-        model.addAttribute(new UserDetailsImpl(new MyNotepadsUser()));
-        return "signUp";
-    }
-
-    @PostMapping("/sentMail")
+    @PostMapping("/sendMail")
     public String sendSighUpMail(@RequestParam String mailAddress) {
+
+        String uuid = UUID.randomUUID().toString();
+        AuthMailAddress authMailAddress = new AuthMailAddress(uuid, mailAddress);
+        int count = authMailAddressRepository.countByMailAddress(mailAddress);
+        if (count > 0) {
+            authMailAddressRepository.deleteByMailAddress(mailAddress);
+        }
+        authMailAddressRepository.save(authMailAddress);
+
         SimpleMailMessage message = new SimpleMailMessage();
 
         message.setFrom("yggdrasill0430@gmail.com");
         message.setTo(mailAddress);
         message.setSubject("test mail");
-        message.setText("This is test mail from gmail server with spring boot mail");
+        message.setText("http://localhost/test?uuid=" + uuid);
 
         sender.send(message);
 
