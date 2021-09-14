@@ -4,8 +4,9 @@ import com.aoiygg.webmempapp.model.AuthMailAddress;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface AuthMailAddressRepository extends JpaRepository<AuthMailAddress, String> {
-    int countByMailAddress(String mailAddress);
-    void deleteByMailAddress(String mailAddress);
+    AuthMailAddress findAuthMailAddressByUuid(String uuid);
 }

@@ -10,22 +10,14 @@ import javax.persistence.Table;
 public class AuthMailAddress {
 
     @Id
-    private String uuid;
     @Column(name = "mail_address")
     private String mailAddress;
+    private String uuid;
 
     public AuthMailAddress() {}
 
-    public AuthMailAddress(String uuid, String mailAddress) {
-        this.uuid = uuid;
+    public AuthMailAddress(String mailAddress, String uuid) {
         this.mailAddress = mailAddress;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
         this.uuid = uuid;
     }
 
@@ -35,5 +27,13 @@ public class AuthMailAddress {
 
     public void setMailAddress(String mailAddress) {
         this.mailAddress = mailAddress;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }

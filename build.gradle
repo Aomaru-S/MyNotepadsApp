@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 //    id 'war'
+
 }
 
 group = 'com.aoiygg'
@@ -21,6 +22,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     runtimeOnly 'mysql:mysql-connector-java'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
+    compileOnly "org.springframework.boot:spring-boot-configuration-processor"
 }
 
 test {

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My notepads</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/loginCommon.css}" type="text/css">
+    <style>* {
+        margin: 0;
+        padding: 0
+    }</style>
+</head>
+<body class="body">
+<header class="header radius">
+    <a th:href="myNotepads" class="myTitleLink nonDecorationLink">My notepads</a>
+</header>
+
+<div class="loginFormContainer">
+    <div class="loginForm radius">
+        <h2 class="login-label">Welcome to MyNotepads!!</h2>
+        <div class="other-option-container">
+            <a th:href="@{/myNotepads}" class="other-option">Top page</a>
+        </div>
+    </div>
+</div>
+
+<footer class="footer radius">
+    © 2021 My notepad .inc
+</footer>
+</body>
+</html>

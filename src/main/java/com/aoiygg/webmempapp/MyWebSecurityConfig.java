@@ -29,7 +29,7 @@ public class MyWebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/mailAddressForm", "/sendMail").permitAll()
+                    .antMatchers("/mailAddressForm", "/sendMail", "/mailSent", "/signUp", "/signUpUser", "/signedUp").permitAll()
                     .anyRequest().authenticated().and()
                 .formLogin()
                     .loginPage("/login").permitAll().and().

@@ -38,3 +38,19 @@
     margin-bottom: 10px;
 }
 
+.other-option-container {
+    display: inline-flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.nonDecorationLink {
+    text-decoration: solid;
+    color: black;
+}
+
+.other-option {
+    color: black;
+}
+
+
