@@ -25,9 +25,10 @@
         <div id="input-password" class="auth-info radius" contenteditable="true" placeholder="Password"></div>
         <button class="login-button" onclick="signUp()">Sign Up</button>
     </div>
-    <form name="form" th:action="@{/signUpUser?uuid=${uuid}}" method="post" th:object="${myNotepadsUser}">
+    <form name="form" th:action="@{/signUpUser}" method="post" th:object="${myNotepadsUser}">
         <input id="username-form" type="hidden" th:field="*{userName}" />
         <input id="password-form" type="hidden" th:field="*{password}" />
+        <input type="hidden" name="uuid" th:value="${uuid}">
     </form>
 </div>
 

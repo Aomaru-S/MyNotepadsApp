@@ -9,12 +9,9 @@ function sendMail() {
 }
 
 function enterIsSubmit() {
-    let ids = [].slice.call(arguments);
-    ids.forEach(
-        id => document.getElementById(id).addEventListener("keydown", ev => {
+    document.getElementById('input-mail-address').addEventListener("keydown", ev => {
             if (ev.key === 'Enter') {
                 sendMail();
             }
         })
-    );
 }

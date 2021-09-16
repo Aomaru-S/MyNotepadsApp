@@ -118,9 +118,14 @@ public class MyNotepadController {
     public String signUpUser(@RequestParam String uuid, @ModelAttribute MyNotepadsUser myNotepadsUser, Model model) {
         myNotepadsUser.setRole("USER");
         String mailAddress = authMailAddressRepository.findAuthMailAddressByUuid(uuid).getMailAddress();
-        myNotepadsUser.setMailAddress(mailAddress).02.;
+        myNotepadsUser.setMailAddress(mailAddress);
         userRepository.save(myNotepadsUser);
         model.addAttribute("username", myNotepadsUser.getUserName());
         return "redirect:signedUp";
+    }
+
+    @GetMapping("/signedUp")
+    public String signedUp() {
+        return "signedUp";
     }
 }
