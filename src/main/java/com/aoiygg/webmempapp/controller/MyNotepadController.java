@@ -95,7 +95,7 @@ public class MyNotepadController {
         message.setTo(mailAddress);
         message.setSubject("test mail");
         message.setText("アカウントに登録したいならリンク踏んでね♡ \n" +
-                "https://localhost:8080/MyNotepads/signUp?uuid=" + uuid);
+                "http://localhost:8080/MyNotepads/signUp?uuid=" + uuid);
 
         sender.send(message);
 
@@ -116,8 +116,7 @@ public class MyNotepadController {
 
     @PostMapping("/signUpUser")
     public String signUpUser(@RequestParam String uuid, @ModelAttribute MyNotepadsUser myNotepadsUser, Model model) {
-        myNotepadsUser.setRole("ROLE_" +
-                "USER");
+        myNotepadsUser.setRole("ROLE_" + "USER");
         String mailAddress = authMailAddressRepository.findAuthMailAddressByUuid(uuid).getMailAddress();
         myNotepadsUser.setMailAddress(mailAddress);
         userRepository.save(myNotepadsUser);
