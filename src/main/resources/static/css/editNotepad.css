@@ -24,7 +24,16 @@
     background-color: dimgray;
 }
 
-.new-category {
+.new-category-container {
     display: flex;
     height: min-content;
+}
+
+.add-button {
+
+}
+
+.category-container {
+    display: flex;
+    justify-content: space-between;
 }

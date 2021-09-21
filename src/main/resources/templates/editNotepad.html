@@ -28,10 +28,12 @@
         </form>
     </main>
     <div class="r-side radius">
-        <div class="new-category">
-            <div class="category-editor editor radius" contenteditable="true" placeholder="category"></div>
-            <div class="material-icons">add_box</div>
+        <div class="new-category-editor-container">
+            <div id="category-editor" class="category-editor editor radius" contenteditable="true" placeholder="category"></div>
         </div>
+        <div id="category-list-container">
+        </div>
+        <button class="button add-button" onclick="addCategory()">Add</button>
         <button class="button" onclick="saveNotepad()">Save</button>
         <button class="button" onclick="resetNotepad()">Reset</button>
     </div>
