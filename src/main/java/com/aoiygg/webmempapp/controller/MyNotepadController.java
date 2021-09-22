@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.net.http.HttpRequest;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,9 +62,10 @@ public class MyNotepadController {
     }
 
     @PostMapping("/editNotepadSubmit")
-    public String editNotepadSubmit(@ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public String editNotepadSubmit(@ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletRequest request) {
         notepad.setMailAddress(userDetails.getMailAddress());
         notepadRepository.save(notepad);
+
         return "redirect:/myNotepads";
     }
 

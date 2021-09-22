@@ -10,6 +10,15 @@ function saveNotepad() {
     titleForm.value = titleEditor.innerText;
     bodyForm.value = bodyEditor.innerText;
 
+    let dForm = document.getElementById('form');
+    categoryList.forEach(function (e, i) {
+        let input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'cat' + i;
+        input.value = e;
+        dForm.insertBefore(input, dForm.firstChild);
+    })
+
     document.form.submit();
 }
 

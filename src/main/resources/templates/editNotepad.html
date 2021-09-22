@@ -22,7 +22,7 @@
     <main class="main radius">
         <div id="title-editor" class="title-editor editor radius" contenteditable="true" placeholder="title"></div>
         <div id="body-editor" class="body-editor editor radius" contenteditable="true" placeholder="body"></div>
-        <form name="form" action="#" th:action="@{/editNotepadSubmit}" th:object="${notepad}" method="post">
+        <form name="form" id="form" action="#" th:action="@{/editNotepadSubmit}" th:object="${notepad}" method="post">
             <input id="title-form" type="hidden" th:field="*{title}" />
             <input id="body-form" type="hidden" th:field="*{body}" />
         </form>
