@@ -28,7 +28,14 @@
         </div>
     </main>
     <div class="r-side radius">
-        r-side
+        <div th:each="category : ${categoryList}">
+            <div class="category-row">
+                <div ></div>
+                <label th:text="${category.getCategoryName()}">
+                    <input type="checkbox">
+                </label>
+            </div>
+        </div>
     </div>
 </div>
 

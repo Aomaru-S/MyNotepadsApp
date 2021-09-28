@@ -1,6 +1,7 @@
 package com.aoiygg.webmempapp.model;
 
 import lombok.Data;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public class Notepad {
     @Column(name = "mail_address")
     private String mailAddress;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY,
+    cascade = CascadeType.ALL)
     @JoinTable(name = "notepad_category",
             joinColumns = @JoinColumn(name = "notepad_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))

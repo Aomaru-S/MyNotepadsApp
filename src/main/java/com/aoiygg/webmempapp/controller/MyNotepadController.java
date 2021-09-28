@@ -1,15 +1,14 @@
 package com.aoiygg.webmempapp.controller;
 
-import com.aoiygg.webmempapp.model.AuthMailAddress;
-import com.aoiygg.webmempapp.model.MyNotepadsUser;
-import com.aoiygg.webmempapp.model.Notepad;
-import com.aoiygg.webmempapp.model.UserDetailsImpl;
+import com.aoiygg.webmempapp.model.*;
 import com.aoiygg.webmempapp.repository.AuthMailAddressRepository;
+import com.aoiygg.webmempapp.repository.CategoryRepository;
 import com.aoiygg.webmempapp.repository.NotepadRepository;
 import com.aoiygg.webmempapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,20 +27,24 @@ public class MyNotepadController {
     NotepadRepository notepadRepository;
     AuthMailAddressRepository authMailAddressRepository;
     UserRepository userRepository;
+    CategoryRepository categoryRepository;
     private final MailSender sender;
 
     @Autowired
-    public MyNotepadController(UserRepository userRepository, NotepadRepository notepadRepository, AuthMailAddressRepository authMailAddressRepository, MailSender sender) {
+    public MyNotepadController(CategoryRepository categoryRepository, UserRepository userRepository, NotepadRepository notepadRepository, AuthMailAddressRepository authMailAddressRepository, MailSender sender) {
         this.notepadRepository = notepadRepository;
         this.authMailAddressRepository = authMailAddressRepository;
         this.sender = sender;
         this.userRepository = userRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/myNotepads")
     public String myNotepads(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         List<Notepad> notepadList = notepadRepository.findNotepadByMailAddress(userDetails.getMailAddress());
+        List<Category> categoryList = categoryRepository.findCategoryByMailAddress(userDetails.getMailAddress());
         model.addAttribute("notepadList", notepadList);
+        model.addAttribute("categoryList", categoryList);
         return "myNotepads";
     }
 
@@ -62,7 +65,7 @@ public class MyNotepadController {
     }
 
     @PostMapping("/editNotepadSubmit")
-    public String editNotepadSubmit(@RequestParam(name = "category") List<String> categoryList, @ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletRequest request) {
+    public String editNotepadSubmit(@RequestParam(name = "category") List<String> categoryList, @ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         notepad.setMailAddress(userDetails.getMailAddress());
         notepad.setCategoryList(categoryList);
         notepadRepository.save(notepad);
