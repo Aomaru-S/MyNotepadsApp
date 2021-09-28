@@ -62,10 +62,10 @@ public class MyNotepadController {
     }
 
     @PostMapping("/editNotepadSubmit")
-    public String editNotepadSubmit(@ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletRequest request) {
+    public String editNotepadSubmit(@RequestParam(name = "category") List<String> categoryList, @ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails, HttpServletRequest request) {
         notepad.setMailAddress(userDetails.getMailAddress());
+        notepad.setCategoryList(categoryList);
         notepadRepository.save(notepad);
-
         return "redirect:/myNotepads";
     }
 

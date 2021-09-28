@@ -11,10 +11,10 @@ function saveNotepad() {
     bodyForm.value = bodyEditor.innerText;
 
     let dForm = document.getElementById('form');
-    categoryList.forEach(function (e, i) {
+    categoryList.forEach(function (e) {
         let input = document.createElement('input');
         input.type = 'hidden';
-        input.name = 'cat' + i;
+        input.name = 'category';
         input.value = e;
         dForm.insertBefore(input, dForm.firstChild);
     })
