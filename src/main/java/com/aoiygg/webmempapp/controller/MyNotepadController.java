@@ -40,8 +40,14 @@ public class MyNotepadController {
     }
 
     @GetMapping("/myNotepads")
-    public String myNotepads(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        List<Notepad> notepadList = notepadRepository.findNotepadByMailAddress(userDetails.getMailAddress());
+    public String myNotepads(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails, @RequestParam(name = "category", required = false) List<String> catList) {
+        List<Notepad> notepadList = null;
+        if (catList == null) {
+            notepadList = notepadRepository.findNotepadByMailAddress(userDetails.getMailAddress());
+        }
+        if (catList != null) {
+            System.out.println(catList);
+        }
         List<Category> categoryList = categoryRepository.findCategoryByMailAddress(userDetails.getMailAddress());
         model.addAttribute("notepadList", notepadList);
         model.addAttribute("categoryList", categoryList);

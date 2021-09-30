@@ -28,14 +28,15 @@
         </div>
     </main>
     <div class="r-side radius">
-        <div th:each="category : ${categoryList}">
-            <div class="category-row">
-                <div ></div>
-                <label th:text="${category.getCategoryName()}">
-                    <input type="checkbox">
-                </label>
+        <form name="form" id="form" action="#" th:action="@{/myNotepads}">
+            <div th:each="category : ${categoryList}">
+                <div class="category-row">
+                    <label th:text="${category.getCategoryName()}"></label>
+                    <input type="checkbox" name="category" th:value="${category.getCategoryName()}">
+                </div>
             </div>
-        </div>
+            <input type="submit" value="Search">
+        </form>
     </div>
 </div>
 
