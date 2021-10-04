@@ -19,11 +19,6 @@
     min-height: 550px;
 }
 
-.button {
-    padding: 6px;
-    background-color: dimgray;
-}
-
 .new-category-container {
     display: flex;
     height: min-content;

@@ -1,11 +1,8 @@
 package com.aoiygg.webmempapp.model;
 
 import lombok.Data;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Entity
@@ -23,21 +20,4 @@ public class Notepad {
 
     @Column(name = "mail_address")
     private String mailAddress;
-
-    @ManyToMany(fetch = FetchType.LAZY,
-    cascade = CascadeType.ALL)
-    @JoinTable(name = "notepad_category",
-            joinColumns = @JoinColumn(name = "notepad_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private List<Category> categoryList = new ArrayList<>();
-
-    public void setCategoryList(List<String> catList) {
-
-        List<Category> categoryList = new ArrayList<>();
-        catList.forEach(s -> {
-            Category category = new Category(mailAddress, s);
-            categoryList.add(category);
-        });
-        this.categoryList = categoryList;
-    }
 }

@@ -24,4 +24,12 @@
 .category-row {
     display: flex;
     justify-content: space-between;
+    background-color: dimgray;
+    margin: 5px;
+    align-items: center;
+    padding: 5px;
+}
+
+.button {
+    margin-left: 5px;
 }

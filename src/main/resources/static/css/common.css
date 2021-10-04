@@ -44,3 +44,8 @@
     color: black;
     text-decoration: none;
 }
+
+.button {
+    padding: 6px;
+    background-color: dimgray;
+}

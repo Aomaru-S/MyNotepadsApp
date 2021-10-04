@@ -1,40 +1,24 @@
 package com.aoiygg.webmempapp.model;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.aoiygg.webmempapp.model.key.CategoryKey;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
 
+@Data
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "category")
-public class Category {
-
-    public Category(String mailAddress, String categoryName) {
-        this.mailAddress = mailAddress;
-        this.categoryName = categoryName;
-    }
+@IdClass(value = CategoryKey.class)
+public class Category implements Serializable {
 
     @Id
-    @GeneratedValue
-    @Column(name = "category_id")
-    @Getter @Setter
-    private Long categoryId;
-
-    @Getter @Setter
-    @Column(name = "mail_address")
-    private String mailAddress;
-
-    @Getter @Setter
     @Column(name = "category_name")
     private String categoryName;
 
-    @Setter
-    @ManyToMany(fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
-            mappedBy = "categoryList")
-    private List<Notepad> notepadList = new ArrayList<>();
+    @Id
+    @Column(name = "mail_address")
+    private String mailAddress;
 }

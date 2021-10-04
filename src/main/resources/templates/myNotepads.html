@@ -7,6 +7,7 @@
           rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/myNotepads.css}" type="text/css">
+    <script th:src="@{/javascript/myNotepads.js}"></script>
     <style>* {
         margin: 0;
         padding: 0
@@ -20,22 +21,25 @@
 <div class="middle">
     <main class="main radius">
         <div class="notepads">
-            <div class="notepad radius" th:each="notepad : ${notepadList}">
+            <div class="notepad radius" th:each="notepad : ${notepadList}" onclick="submit()">
                 <p th:text="${notepad.getNotepadId()}"></p>
                 <p th:text="${notepad.getTitle()}"></p>
                 <p th:text="${notepad.getBody()}"></p>
+                <form th:action="@{/editNotepad}" method="post" id="edit-form">
+                    <input type="hidden" name="notepad-id">
+                </form>
             </div>
         </div>
     </main>
     <div class="r-side radius">
         <form name="form" id="form" action="#" th:action="@{/myNotepads}">
             <div th:each="category : ${categoryList}">
-                <div class="category-row">
+                <div class="category-row radius">
                     <label th:text="${category.getCategoryName()}"></label>
-                    <input type="checkbox" name="category" th:value="${category.getCategoryName()}">
+                    <input type="checkbox" name="category" th:value="${category.getCategoryName()}" class="check-box">
                 </div>
             </div>
-            <input type="submit" value="Search">
+            <input type="submit" value="Search" class="button">
         </form>
     </div>
 </div>
