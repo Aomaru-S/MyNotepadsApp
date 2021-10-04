@@ -1,4 +1,5 @@
-function submit() {
-    let form = document.getElementById('edit-form');
-    form.submit();
+function submit(e) {
+    document.getElementById("id-form").value = e.children.item(0).innerText;
+    alert(document.getElementById(document.getElementById("id-form").value))
+    // document.getElementById("edit-form").submit();
 }

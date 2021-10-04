@@ -40,7 +40,7 @@ function addCategory() {
     newCategory.innerText = categoryEditor.innerText;
     let removeCategory = document.createElement('div');
     removeCategory.innerText = '×';
-    removeCategory.addEventListener('click', function() {
+    removeCategory.addEventListener('click', function () {
         removeCategoryFun(newCategory.innerText);
     }, false);
     newCategoryContainer.insertBefore(removeCategory, newCategoryContainer.firstChild)
@@ -54,4 +54,14 @@ function removeCategoryFun(category) {
     categoryList.splice(index, 1);
     let categoryListContainer = document.getElementById('category-list-container');
     categoryListContainer.removeChild(categoryListContainer.children[categoryListContainer.childElementCount - index - 1]);
+}
+
+window.onload = function () {
+    let list = document.getElementById("hidden-category-list");
+    let count = list.childElementCount;
+    for (let i = 0; i < count; i++) {
+        document.getElementById("category-editor").innerText = list.children.item(i).value;
+        addCategory();
+        categoryList.push(list.children.item(i));
+    }
 }

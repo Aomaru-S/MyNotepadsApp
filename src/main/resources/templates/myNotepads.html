@@ -7,7 +7,6 @@
           rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/myNotepads.css}" type="text/css">
-    <script th:src="@{/javascript/myNotepads.js}"></script>
     <style>* {
         margin: 0;
         padding: 0
@@ -21,14 +20,14 @@
 <div class="middle">
     <main class="main radius">
         <div class="notepads">
-            <div class="notepad radius" th:each="notepad : ${notepadList}" onclick="submit()">
+            <div class="notepad radius" th:each="notepad: ${notepadList}" onclick="submit(this)">
                 <p th:text="${notepad.getNotepadId()}"></p>
                 <p th:text="${notepad.getTitle()}"></p>
                 <p th:text="${notepad.getBody()}"></p>
-                <form th:action="@{/editNotepad}" method="post" id="edit-form">
-                    <input type="hidden" name="notepad-id">
-                </form>
             </div>
+            <form th:action="@{/editNotepad}" method="post" id="edit-form">
+                <input id="id-form" type="hidden" name="notepad-id">
+            </form>
         </div>
     </main>
     <div class="r-side radius">
@@ -49,5 +48,6 @@
 </footer>
 
 <a th:href="editNotepad" class="material-icons editNotepadLink">add_circle</a>
+<script th:src="@{/javascript/myNotepads.js}"></script>
 </body>
 </html>

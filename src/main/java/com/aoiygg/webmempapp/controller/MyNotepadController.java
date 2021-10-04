@@ -56,15 +56,11 @@ public class MyNotepadController {
             catList.forEach(s -> {
                 List<NotepadCategory> notepadCategories = notepadCategoryRepository.findNotepadCategoryByCategoryName(s);
                 Set<Long> ids = new HashSet<>();
-                notepadCategories.forEach(notepadCategory -> {
-                    ids.add(notepadCategory.getNotepadId());
-                });
+                notepadCategories.forEach(notepadCategory -> ids.add(notepadCategory.getNotepadId()));
                 notepadIdSet.addAll(ids);
             });
             List<Notepad> finalNotepadList = notepadList;
-            notepadIdSet.forEach(aLong -> {
-                finalNotepadList.add(notepadRepository.findById(aLong).orElse(null));
-            });
+            notepadIdSet.forEach(aLong -> finalNotepadList.add(notepadRepository.findById(aLong).orElse(null)));
         }
         List<Category> categoryList = categoryRepository.findCategoryByMailAddress(userDetails.getMailAddress());
         model.addAttribute("notepadList", notepadList);
@@ -78,8 +74,14 @@ public class MyNotepadController {
         return "editNotepad";
     }
     @PostMapping("/editNotepad")
-    public String editNotepadPost(Model model) {
-        model.addAttribute("notepad", new Notepad());
+    public String editNotepadPost(@RequestParam(value = "notepad-id", required = false) String notepadId, Model model) {
+        Long id = ((long) Integer.parseInt(notepadId));
+        Notepad notepad = notepadRepository.findById(id).orElse(null);
+        List<NotepadCategory> notepadCategoryList = notepadCategoryRepository.findNotepadCategoryByNotepadId(id);
+        List<String> categoryList = new ArrayList<>();
+        notepadCategoryList.forEach(notepadCategory -> categoryList.add(notepadCategory.getCategoryName()));
+        model.addAttribute("notepad", notepad);
+        model.addAttribute("categoryList", categoryList);
         return "editNotepad";
     }
 
@@ -91,28 +93,23 @@ public class MyNotepadController {
     @PostMapping("/editNotepadSubmit")
     public String editNotepadSubmit(@RequestParam(name = "category", required = false) List<String> categoryList, @ModelAttribute Notepad notepad, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         Notepad np = notepadRepository.findById(notepad.getNotepadId()).orElse(null);
+
         if (np != null) {
             long notepadId = np.getNotepadId();
-            categoryList.forEach(s -> {
-                long count = notepadCategoryRepository.countAllByCategoryNameAndNotepadId(s, notepadId);
+            List<NotepadCategory> notepadCategoryList = notepadCategoryRepository.findNotepadCategoryByNotepadId(notepadId);
+            notepadCategoryList.forEach(s -> {
+                String categoryName = s.getCategoryName();
+                long count = notepadCategoryRepository.countAllByCategoryNameAndNotepadId(categoryName, notepadId);
                 if (count == 1) {
-                    NotepadCategoryKey nck = new NotepadCategoryKey(notepadId, s);
+                    NotepadCategoryKey nck = new NotepadCategoryKey(notepadId, categoryName);
                     notepadCategoryRepository.deleteById(nck);
                     entityManager.flush();
-                    CategoryKey categoryKey = new CategoryKey(s, np.getMailAddress());
+                    CategoryKey categoryKey = new CategoryKey(categoryName, userDetails.getMailAddress());
                     categoryRepository.deleteById(categoryKey);
                 }
             });
-
-            /*List<NotepadCategory> notepadCategoryList = new ArrayList<>();
-            notepadCategoryList = notepadCategoryRepository.findNotepadCategoryByNotepadId(np.getNotepadId());
-            notepadCategoryList.forEach(notepadCategory -> {
-                long notepadId = notepadCategory.getNotepadId();
-                String mailAddress = notepad.getMailAddress();
-                NotepadCategoryKey nck = new NotepadCategoryKey(notepadId, mailAddress);
-
-            });*/
         }
+
         notepad.setMailAddress(userDetails.getMailAddress());
         notepadRepository.save(notepad);
         entityManager.flush();

@@ -11,7 +11,6 @@
         margin: 0;
         padding: 0
     }</style>
-    <script type="text/javascript" th:src="@{/javascript/editNotepad.js}"></script>
 </head>
 <body class="body">
 <header class="header radius">
@@ -20,9 +19,10 @@
 
 <div class="middle">
     <main class="main radius">
-        <div id="title-editor" class="title-editor editor radius" contenteditable="true" placeholder="title"></div>
-        <div id="body-editor" class="body-editor editor radius" contenteditable="true" placeholder="body"></div>
+        <div id="title-editor" class="title-editor editor radius" contenteditable="true" placeholder="title" th:text="${notepad.getTitle()}"></div>
+        <div id="body-editor" class="body-editor editor radius" contenteditable="true" placeholder="body" th:text="${notepad.getBody()}"></div>
         <form name="form" id="form" action="#" th:action="@{/editNotepadSubmit}" th:object="${notepad}" method="post">
+            <input type="hidden" th:field="*{notepadId}" />
             <input id="title-form" type="hidden" th:field="*{title}" />
             <input id="body-form" type="hidden" th:field="*{body}" />
         </form>
@@ -37,10 +37,14 @@
         <button class="button" onclick="saveNotepad()">Save</button>
         <button class="button" onclick="resetNotepad()">Reset</button>
     </div>
+    <div id="hidden-category-list" th:each="category: ${categoryList}">
+        <input type="hidden" th:value="${category}">
+    </div>
 </div>
 
 <footer class="footer radius">
     © 2021 My notepad .inc
 </footer>
 </body>
+<script type="text/javascript" th:src="@{/javascript/editNotepad.js}"></script>
 </html>
