@@ -37,8 +37,8 @@
         <button class="button" onclick="saveNotepad()">Save</button>
         <button class="button" onclick="resetNotepad()">Reset</button>
     </div>
-    <div id="hidden-category-list" th:each="category: ${categoryList}">
-        <input type="hidden" th:value="${category}">
+    <div id="hidden-category-list">
+        <input type="hidden" th:value="${category}" th:each="category: ${categoryList}">
     </div>
 </div>
 

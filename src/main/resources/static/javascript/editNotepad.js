@@ -33,6 +33,9 @@ function resetNotepad() {
 function addCategory() {
     let categoryListContainer = document.getElementById('category-list-container');
     let categoryEditor = document.getElementById('category-editor');
+    if (!categoryEditor.innerText) {
+        return;
+    }
     categoryList.push(categoryEditor.innerText);
     let newCategoryContainer = document.createElement('div');
     newCategoryContainer.classList.add('category-container');
@@ -62,6 +65,5 @@ window.onload = function () {
     for (let i = 0; i < count; i++) {
         document.getElementById("category-editor").innerText = list.children.item(i).value;
         addCategory();
-        categoryList.push(list.children.item(i));
     }
 }

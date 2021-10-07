@@ -113,12 +113,14 @@ public class MyNotepadController {
         notepad.setMailAddress(userDetails.getMailAddress());
         notepadRepository.save(notepad);
         entityManager.flush();
-        categoryList.forEach(cat -> {
-            Category category = new Category(cat, userDetails.getMailAddress());
-            categoryRepository.save(category);
-            NotepadCategory notepadCategory = new NotepadCategory(notepad.getNotepadId(), cat);
-            notepadCategoryRepository.save(notepadCategory);
-        });
+        if (categoryList != null) {
+            categoryList.forEach(cat -> {
+                Category category = new Category(cat, userDetails.getMailAddress());
+                categoryRepository.save(category);
+                NotepadCategory notepadCategory = new NotepadCategory(notepad.getNotepadId(), cat);
+                notepadCategoryRepository.save(notepadCategory);
+            });
+        }
         return "redirect:/myNotepads";
     }
 
