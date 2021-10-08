@@ -22,8 +22,14 @@
 <div class="loginFormContainer">
     <div class="loginForm radius">
         <h2 class="login-label">Log In</h2>
-        <div id="input-id" class="auth-info radius" contenteditable="true" placeholder="ID" autofocus></div>
-        <div id="input-password" class="auth-info radius" contenteditable="true" placeholder="Password"></div>
+        <form name="form" th:action="@{/login}" method="post">
+            <div id="input-id" class="auth-info radius">
+                <input class="id-form" type="text" name="username" placeholder="ID" autofocus />
+            </div>
+            <div id="input-password" class="auth-info radius">
+                <input class="password-form" type="password" name="password"  placeholder="Password"/>
+            </div>
+        </form>
         <button class="login-button" onclick="login()">Log In</button>
         <div class="auth-info radius error-message message" th:if="${param.error}">Invalid username or password.</div>
         <div class="auth-info radius logged-out-message message" th:if="${param.logout}">Logged out successfully.</div>
@@ -32,10 +38,6 @@
             <a href="https://google.com/" class="other-option">Forgot password?</a>
         </div>
     </div>
-    <form name="form" th:action="@{/login}" method="post">
-        <input id="id-form" type="hidden" name="username" />
-        <input id="password-form" type="hidden" name="password" />
-    </form>
 </div>
 
 <footer class="footer radius">

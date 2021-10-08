@@ -11,3 +11,16 @@
 .error-message {
     background-color: darkred;
 }
+
+input:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s !important;
+}
+
+.id-form, .password-form{
+    padding-left: 5px;
+    display: block;
+    width: calc(100% - 5px);
+    height: 100%;
+    border: none;
+    background-color: dimgray;
+}

@@ -24,18 +24,12 @@
     margin-bottom: 20px;
 }
 
-.auth-info:empty:before {
-    content: attr(placeholder);
-    pointer-events: none;
-    opacity: 0.8;
-    font-weight: normal;
-}
-
 .auth-info {
-    padding: 10px;
     font-weight: bold;
     background-color: dimgray;
     margin-bottom: 10px;
+    height: 30px;
+    width: 300px;
 }
 
 .other-option-container {
